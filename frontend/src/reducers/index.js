@@ -1,3 +1,5 @@
+import { combineReducers } from 'redux'
+
 import {
   ADD_POST,
 } from '../actions'
@@ -6,7 +8,7 @@ const initialPostsState = [
     {
         "id": "aaa0y6zwwwjabvozdd253nd",
         "timestamp": 1467166872624,
-        "title": "My Blog",
+        "title": "My Initial Blog",
         "body": "Something interesting",
         "author": "Wonderwomen",
         "category": "tech",
@@ -15,6 +17,24 @@ const initialPostsState = [
         "commentCount": 2
     },
 ]
+
+function categories (state = {}, action){
+  switch (action.type){
+    case "ADD_POST":
+      console.log("in the categories reducer")
+    default:
+      return state
+  }
+}
+
+function comments (state = {}, action){
+  switch (action.type){
+    case "ADD_COMMENT":
+      console.log("in the comments reducer")
+    default:
+      return state
+  }
+}
 
 function posts (state = initialPostsState, action ){
 
@@ -32,4 +52,8 @@ function posts (state = initialPostsState, action ){
   }
 }
 
-export default posts
+export default combineReducers({
+  categories,
+  posts,
+  comments,
+})
